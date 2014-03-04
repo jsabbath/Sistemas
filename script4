@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for archivo in $(find . -type f | grep "/out/")
+do
+	rem=$(echo $archivo | cut -d/ -f3)
+	des=$(echo $archivo | cut -d/ -f5)
+	cat $archivo >> ./buzones/$des/in/$rem
+	rm $archivo
+done

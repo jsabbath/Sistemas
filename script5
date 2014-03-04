@@ -1,0 +1,12 @@
+#!/bin/bash
+archivos=$(find . -type f | grep "/$1/in/")
+if echo $archivos | grep "."  > /dev/null ; then
+	for archivo in $archivos
+	do
+		rem=$(echo $archivo | cut -d/ -f5)
+		cat $archivo | xargs -I {} echo -e "$rem:{}"
+		rm $archivo
+	done
+else
+	echo "No existen mensajes"
+fi
