@@ -1,0 +1,10 @@
+#!/bin/bash
+min=$(ls -l $* | tr -s ' ' | cut -f5 -d' ' | sort -n | head -1)
+for file in $*
+do
+	size=$(ls -l $file | cut -f5 -d' ')
+	if [ $size -eq $min ] ; then
+		echo $file
+	fi
+done
+

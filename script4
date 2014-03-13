@@ -1,0 +1,19 @@
+#!/bin/bash
+avg=
+sum=0
+for file in $*
+do
+	size=$(ls -l $file | cut -f5 -d' ')
+	(( sum+=size ))
+done
+
+(( avg=sum/$# ))
+
+for file in $*
+do
+	size=$(ls -l $file | cut -f5 -d' ')
+	if [ $size -ge $avg ] ; then
+		echo $file
+	fi
+done
+
